@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- font awesome -->
+    <script src="https://use.fontawesome.com/f0d1a7c893.js"></script>
+    <!-- internal stylesheet -->
+    <link rel="stylesheet" href="asset/style.css">
+    <title>Scraping With Mongoose/ Week 18</title>
+  </head>
+  <body>
+    <div class = "container">
+      <h1>Hologram News Cube</h1>
+      <div class="row">
+        <div class="col-md-3 enterNote">
+          <form class="noteDiv">
+            <textarea class="noteText" placeholder="enter your note here"></textarea>
+            <button class="submit">Submit</button>
+          </form>
+        </div>
+        <!-- <div class="row">
+          <span class="col-md-8" id="articleDiv"></span>
+          <span class="col-md-4" id="notes">
+            <form>
+              <input type="text" name="Heading" placeholder="heading">
+              <br>
+              <br>
+              <textarea>Notes to enter</textarea>
+            </form>
+          </span>
+        </div> -->
+        <!-- </div> -->
+        <script id="displayArticle" type="text/html">
+        {{#each article}}
+        <ul>
+          <li data-id={{id}}>
+            <h3>Article {{id}}</h3>
+            <h4><a href="{{link}}" target="_blank">{{title}}</a></h4>
+            {{story}}
+          </li>
+        </ul>
+        {{/each}}
+        </script>
+        <div class="wrapper col-md-4">
+          <div class="cube rotate" id="articleDiv">
+            <b class="front"><h3 class="front-article">Click Me</h3></b>
+            <b class="back"><h3 class="back-article">Click Me</h3></b>
+            <b class="top"></b>
+            <b class="bottom"></b>
+            <b class="left"><h3 class="left-article">Click Me</h3></b>
+            <b class="right"><h3 class="right-article">Click Me</h3></b>
+            <i class="front"></i>
+            <i class="back"></i>
+            <i class="top"></i>
+            <i class="bottom"></i>
+            <i class="left"></i>
+            <i class="right"></i>
+          </div>
+        </div>
+        <!-- <script id="notesArray" type="text/html">
+        {{#each note}}
+        <li data-id={{id}}>{{body}}</li>
+        <button class="button">Delete</button>
+        {{/each}}
+        </script> -->
+        <div class="col-md-3 notes">
+          <p class="displayNote"> </p>
+          <!-- <button class="delete">Delete</button> -->
+        </div>
+      </div>
+      <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+      <!-- handlebars cdn -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+      <script type="text/javascript" src="app.js"></script>
+    </body>
+  </html>
