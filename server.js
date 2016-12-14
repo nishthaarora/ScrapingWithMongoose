@@ -22,7 +22,7 @@ app.use(express.static("public"));
 app.use('/', apiRoutes);
 
 // mongoose.connect('mongodb://localhost/scrapingWithMongoose');
-mongoose.connect(' mongodb://heroku_7xq2fkkm:eo8vl6utpntev2cnd5f1n792om@ds133338.mlab.com:33338/heroku_7xq2fkkm');
+mongoose.connect('mongodb://heroku_7xq2fkkm:eo8vl6utpntev2cnd5f1n792om@ds133338.mlab.com:33338/heroku_7xq2fkkm');
 var db = mongoose.connection
 db.on("error", function(error) {
   console.log("Mongoose Error: ", error);

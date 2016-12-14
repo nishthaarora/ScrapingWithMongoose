@@ -24,3 +24,5 @@ Created a web app that lets users leave comments on the latest news. By using Mo
 
     * Whenever an article is scraped from google if checks if an article isn't already represented in MongoDB database before saving it; Since we don't want duplicates.
 
+  3. working app is deployed to Heroku with the following link: https://guarded-refuge-17182.herokuapp.com/
+
