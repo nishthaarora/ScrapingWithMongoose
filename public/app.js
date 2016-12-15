@@ -10,12 +10,15 @@ $('.cube').on('click', function() {
 		$(this).removeClass('rotate');
 		$('.enterNote').removeClass('hidden');
 		$('.notes').removeClass('hidden');
+		$('.wrapper.col-md-4').css('padding-left', '0px');
+		$('.displayNote').text('')
 		getAllArticles()
 		return;
 	} else {
 		$(this).toggleClass('rotate');
 		$('.enterNote').addClass('hidden');
 		$('.notes').addClass('hidden');
+		$('.wrapper.col-md-4').css('padding-left', '500px')
 		return;
 	}
 
@@ -44,7 +47,7 @@ function getAllArticles() {
 
 			// displaying notes array and creating a button for each comment
 			data.article.note.forEach(function(ele) {
-				console.log(ele)
+				// console.log(ele)
 				var deleteButton = $('<button class="delete" data-id = ' + ele._id + '>' + 'Delete' + '</button>');
 				var commentList = $('<p>').text(ele.body)
 				commentList.append(deleteButton);
@@ -55,6 +58,8 @@ function getAllArticles() {
 		})
 }
 
+
+
 // post notes in database
 function postNote(event) {
 	event.preventDefault();
@@ -63,10 +68,11 @@ function postNote(event) {
 	var text = {
 		noteText: $('.noteText').val()
 	};
-	$('.displayNote').html($('.noteText').val());
+	$('.displayNote').append($('<p>').text($('.noteText').val()));
 	$.post('/article/' + articleId, text).done(function(data) {})
 	$('.noteText').val('');
 }
+
 
 // delete notes from database
 function deleteNote(event) {

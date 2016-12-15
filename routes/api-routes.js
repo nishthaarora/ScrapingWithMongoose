@@ -107,17 +107,21 @@ router.post('/article/del/:id', function(req, res) {
 			var notes = doc.note;
 			console.log(notes)
 			for (var i = 0; i < notes.length; i++) {
-				var note = notes[i];
+				// var note = notes[i];
 				// console.log(note.id)
 				if (note.id === req.body.noteId) {
-					delete(note["id"])
-						// console.log('id',note.id)
+					doc.note.splice(i,1)
+						// console.log('id', note.id);
+						// console.log('id2', req.body.noteId);
+					// console.log('notes', notes);
+					// notes.splice(i, 1)
+					// console.log('notes1', notes);
+					// delete note["id"]
 				} else {
 					// return console.log(false);
 				}
-
 			}
-			Article.save(doc)
+			doc.save()
 		})
 
 
