@@ -77,20 +77,20 @@ router.post('/article/:id', function(req, res) {
 	var newNote = req.body.noteText
 	Note.create({
 		'body': newNote
-	}, function(err, doc) {
+	}, function(err, newNote) {
 		if (err) throw err;
 		else {
 			Article.findOneAndUpdate({
 					articleId: req.params.id
 				}, {
 					$push: {
-						"note": doc._id
+						"note": newNote._id
 					}
 				})
 				.exec(function(err, doc) {
-					console.log('doc', doc)
+					// console.log('doc', doc)
 					if (err) throw err;
-					res.send(doc);
+					res.send(newNote);
 				})
 		}
 	})
@@ -98,7 +98,7 @@ router.post('/article/:id', function(req, res) {
 
 // deleting notes assosication with the article on click of the delete button
 router.post('/article/del/:id', function(req, res) {
-	// console.log('reqid',req.body.noteId)
+	console.log('reqid',req.params.id);
 	Article.findOne({
 			articleId: req.params.id
 		})
@@ -107,7 +107,7 @@ router.post('/article/del/:id', function(req, res) {
 			var notes = doc.note;
 			console.log(notes)
 			for (var i = 0; i < notes.length; i++) {
-				// var note = notes[i];
+				var note = notes[i];
 				// console.log(note.id)
 				if (note.id === req.body.noteId) {
 					doc.note.splice(i,1)
@@ -122,6 +122,7 @@ router.post('/article/del/:id', function(req, res) {
 				}
 			}
 			doc.save()
+			res.json({success:true})
 		})
 
 

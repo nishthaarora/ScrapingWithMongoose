@@ -68,8 +68,12 @@ function postNote(event) {
 	var text = {
 		noteText: $('.noteText').val()
 	};
-	$('.displayNote').append($('<p>').text($('.noteText').val()));
-	$.post('/article/' + articleId, text).done(function(data) {})
+	var $note = $('<p>').text($('.noteText').val());
+	$.post('/article/' + articleId, text).done(function(data) {
+		$note.append($('<button class="delete" data-id = ' + data._id + '>' + 'Delete' + '</button>'))
+    $('.displayNote').append($note);
+
+	})
 	$('.noteText').val('');
 }
 
@@ -82,17 +86,15 @@ function deleteNote(event) {
 		noteId: $(this).data('id')
 	};
 
-	$.post('/article/del/' + articleId, noteId).done(function(res) {})
+	var $note = $(this).parent('p');
 
-	// 	$.ajax({
-	//   method: "POST",
-	//   url: "/article/del/" + articleId,
-	//   noteId: noteId
-	// }).done(function(res) {
-	// 		// if(res.success) {
-	// 			// $('.displayNote').val('');
-	// 		// }
-	// })
+	$.post('/article/del/' + articleId, noteId).done(function(res) {
+
+		if('success') {
+			$note.remove();
+		}
+
+	})
 }
 
 
